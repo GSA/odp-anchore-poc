@@ -1,10 +1,13 @@
 pipeline {
   agent any
   stages {
-    stage('') {
-      steps {
-        sh 'ls -la'
-      }
+    stage ('Build docker image') {
+            steps {
+                script {
+                    docker.build("test-image:${env.BUILD_ID}")
+                }
+            }
+        }
     }
 
   }
