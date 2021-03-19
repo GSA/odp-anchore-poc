@@ -2,9 +2,20 @@ pipeline {
   agent any
   stages {
     stage('Build Image') {
-      steps {
-        script {
-          docker.build("test-image:${env.BUILD_ID}")
+      parallel {
+        stage('Build Image') {
+          steps {
+            script {
+              docker.build("test-image:${env.BUILD_ID}")
+            }
+
+          }
+        }
+
+        stage('') {
+          steps {
+            sh 'ls -la'
+          }
         }
 
       }
