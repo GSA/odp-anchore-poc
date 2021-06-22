@@ -7,6 +7,9 @@ pipeline {
           docker.build("test-image:${env.BUILD_ID}")
         }
 
+        sh '''whoami
+
+docker ps -a'''
       }
     }
 
