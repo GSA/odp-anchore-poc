@@ -3,14 +3,11 @@ pipeline {
   stages {
     stage('Build Image') {
       steps {
-        sh '''whoami
-
-docker ps -a'''
         script {
-          docker.build("test-image:${env.BUILD_ID}")
+          docker.withRegistry('', 'odp-docker'){
+            docker.build("test-image:${env.BUILD_ID}")
+          }
         }
-
-        sh 'ls -la'
       }
     }
 
