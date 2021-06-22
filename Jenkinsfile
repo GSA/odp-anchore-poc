@@ -3,13 +3,14 @@ pipeline {
   stages {
     stage('Build Image') {
       steps {
+        sh '''whoami
+
+docker ps -a'''
         script {
           docker.build("test-image:${env.BUILD_ID}")
         }
 
-        sh '''whoami
-
-docker ps -a'''
+        sh 'ls -la'
       }
     }
 
